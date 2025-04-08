@@ -1,0 +1,351 @@
+/* 1. Global Styles */
+* {
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #00262D;
+    color: white;
+    /* font-family: 'Arial', sans-serif; */
+    /* font-family: 30px Tahoma; */
+    font: 18px Tahoma;
+    /* text-align: center; */
+}
+ /* naveBar Starts Here */
+ .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    height: 12vh;
+    background-color: #00262D;
+}
+
+.logoWrap{
+    display: flex;
+    align-items:center ;
+}
+.logo {
+    font-size: 25px;
+  
+    /* font-weight: bold; */
+}
+.logoimg{
+    width: 50px;
+    height: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 150px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    text-decoration: underline;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #BFEF4B;
+}
+
+
+/* mission section starts here */
+.mission{
+    padding: 30px;
+}
+.mission > h2{
+    color: #BFEF4B;
+    font: 60px tahoma;
+}
+.mission > h4{
+    color: #BFEF4B;
+    font: 40px tahoma;
+}
+.mission > p{
+    font: 25px tahoma;
+}
+
+
+
+.technology{
+    display: flex;
+    padding: 30px;
+    background-color: #003D47;
+    width: 100%;
+}
+.technologyText{
+    padding: 10px;
+    width: 50%;
+}
+.technologyText > h2{
+    color: #BFEF4B;
+    font: 50px tahoma;
+    text-align: center;
+}
+.technologyText > p{
+    font: 22px tahoma;
+}
+.ourStory{
+    text-align: center;
+    align-content: center;
+    justify-content: center;
+    width: 50%;
+}
+.ourStory > h1{
+    font: 50px tahoma;
+    color: #BFEF4B;
+}
+
+
+
+.ourNumber{
+
+}
+.ourNumber > h2{
+    font: 50px tahoma;
+    color: #BFEF4B;
+    text-align: center;
+}
+.ourNumberWrap{
+    justify-content: center;
+    display: flex;
+    gap: 150px;
+    width: 100%;
+}
+.ourNumberWrapText{
+    text-align: center;
+    width: 33%;
+    padding: 20px;
+    
+}
+.ourNumberWrapText > h1{
+    color: #BFEF4B;
+    font: 90px tahoma;
+}
+.ourNumberWrapText > p{
+    font: 30px tahoma;
+    font-weight: bold;
+}
+
+
+
+/* footer starts here */
+
+.footer{
+    height: auto;
+    width: 100%;
+    background-color: #003D47;
+}
+.footerlogoWrap{
+    padding: 40px;
+   margin-top: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+}
+.contact-container {
+    padding: 50px;
+    display: flex;
+    width: 100%;
+    /* max-width: 900px; */
+    margin-top: 40px;
+    color: black;
+    gap: 110px;
+}
+
+.menu{
+    color: white;
+    margin-top: 60px;
+}
+
+.contact-form {
+    flex: 1;
+    padding: 20px;
+    background: #BFEF4B;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.contact-info {
+    justify-items: center;
+    margin-top: 60px;
+    color: white;
+    flex: 1;
+    padding: 20px;
+    width: 20%;
+    
+}
+.contact-info > p{
+    margin-top: 30px;
+    width: 50%;
+}
+
+.contact-form > h2 {
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+}
+
+input, textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    font-size: 1rem;
+    background: transparent;
+    margin-top: 32px;
+}
+.textarea{
+    /* border: none; */
+}
+hr {
+    margin: 20px 0;
+    border: 0.5px solid gray;
+    width: 40%;
+}
+
+.btn4 {
+    background: #003D47;
+    border: 1px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn4:hover {
+    background: #BFEF4B;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        gap: 50px;
+        padding: 15px 5%;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 30px;
+        width: 75%;
+        background-color: #BFEF4B;
+        /* margin-top: 20px; */
+        position: absolute;
+        top: 10vh;
+        left: 92px;
+        padding: 20px 5%;
+        z-index: 1000;
+    }
+
+    .nav-links.nav-list{
+        display: flex;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle{
+        display: block;
+    }
+
+    .ourNumberWrap {
+        flex-direction: column;
+        gap: 50px;
+    }
+
+    .ourNumberWrapText {
+        width: 100%;
+    }
+
+    .technology {
+        flex-direction: column;
+    }
+
+    .technologyText, .ourStory {
+        width: 100%;
+        /* text-align: center; */
+    }
+
+    .blockShieldImg{
+        width: 70%;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    .contact-form, .contact-info {
+        width: 100%;
+    }
+
+    .contact-info > p {
+        width: 100%;
+    }
+
+
+
+    .mission > h2{
+        font-size: 40px;
+    }
+    .mission > h4{
+        font-size: 25px;
+    }
+    .mission > p{
+        font-size: 18px;
+    }
+    .technologyText > p{
+        font-size: 18px;
+    }
+
+
+    .ourNumber > h2{
+        font-size: 40px;
+    }
+    .ourNumberWrapText > h1{
+        font-size: 60px;
+    }
+
+
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="company.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logoWrap" >
+                <img class="logoimg" src="logo.avif" alt="logo">
+               <div class="logo"> Peritum <br> Recovery </div>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="solutions.html">Solution</a></li>
+                <li><a href="company.html">Company</a></li>
+            </ul>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+    <div class="company">
+        <section class="mission">
+            <h2>Our Mission and Vision</h2>
+            <h4>Putting a Smile back on our clients faces</h4>
+            <p>
+                Helping Victims Recover their Crypto Assets, Without  Paying Upfront.
+                Most Victims lost their entire Life Savings and also Accumulate Huge Debt before realizing they are being Scammed, Due to this fact Fast Recovery Team takes Charges for Services Rendered After Crypto Assets are Successfully Recovered.​
+            </p>
+        </section>
+
+        <section class="technology">
+            <div class="technologyText">
+                <h2>Technology</h2>
+                <p>
+                    Launched in 2017, Peritum Recovery was founded by two highly skilled and experienced professionals from different field of study. an Hacker and a Retired Financial Investigator coming together to help victims of Cryptocurrency Scam Recover their lost Crypto Asset.
+                    This Team have had lots of success getting the job done in the past few years with a 97% Successful Recovery Rate
+                         <br> <br> <br>
+                    The Technology we use to Investigate, Track and Ultimately Recover Lost Crypto Assets is a Proprietary Software Program developed by our two Professionals, It is Built and Tailored specifically for the sole purpose of Recovering Lost Crypto Assets and gaining access to Frozen or Locked Cryptocurrencies Wallets and HardDrives.
+                         <br> <br>
+                    It took 2 years to develop this Software Program, and it was first tested in the early months of  2017 which was an instant and total success. Ever Since, the software has been used to help hundreds of victims, and over $24Million worth of Crypto Assets either Lost to scammers, hackers, stolen or Lost Hard drives has been Recovered, with a 97% Success Rate.
+                        <br> <br>
+                    Our aim is to help innocent victims recover their crypto assets. And we've been doing just that, with a very high success rate, ever since the development and launch of this software in 2017.
+                </p>
+            </div>
+            <div class="ourStory">
+                <h1>Our Story</h1>
+                <img class="blockShieldImg" src="blockShield.avif" alt="blockShield">
+            </div>
+        </section>
+
+        <section class="ourNumber">
+            <h2>We Take Pride in Our  Numbers</h2>
+            <div class="ourNumberWrap">
+                <div class="ourNumberWrapText">
+                    <h1>8</h1>
+                    <p>Years of <br> Experience</p>
+                </div>
+                <div class="ourNumberWrapText">
+                    <h1>100+</h1>
+                    <p>Successful <br>Recovery Cases</p>
+                </div>
+                <div class="ourNumberWrapText">
+                    <h1>$24M</h1>
+                    <p>Crypto Asset Recovered</p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footerlogoWrap" >
+            <img class="logoimg" src="logo.avif" alt="logo">
+           <div class="logo"> Peritum <br> Recovery </div>
+        </div>
+        <div class="contact-container">
+            
+            <div class="contact-form">
+                <h2>Get Started <br> No Upfront Payment</h2>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label>First name *</label>
+                        <input class="formbox" type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Last name *</label>
+                        <input class="formbox" type="text" id="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input class="formbox" type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Write a message</label>
+                        <textarea id="message"></textarea>
+                    </div>
+                    <button class="btn4" type="submit">Submit</button>
+                </form>
+            </div>
+            <div class="menu">
+                <p>MENU</p>
+                <p><a href="#Home">Home</a></p>
+                <p><a href="#Solution">Solution</a></p>
+                <p><a href="#Company">Company</a></p>
+            </div>
+            <div class="contact-info">
+                <p>319-720-7845</p>
+                <p>Peritumrecovery@gmail.com</p>
+                <p>500 Terry Francine St. San Francisco, CA 94158</p>
+                <hr>
+                <p><a href="#">Privacy Policy</a></p>
+                <p><a href="#">Accessibility Statement</a></p>
+                <hr>
+                <p>&copy; 2020 Powered and secured by <a href="#">B1 Developers</a>.</p>
+            </div>
+        </div>
+
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('nav-links');
+            navLinks.classList.toggle('nav-list');
+        }
+    </script>
+    
+</body>
+</html>

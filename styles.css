@@ -1,0 +1,904 @@
+/* 1. Global Styles */
+* {
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #00262D;
+    color: white;
+    /* font-family: 'Arial', sans-serif; */
+    /* font-family: 30px Tahoma; */
+    font: 22px Tahoma;
+    /* text-align: center; */
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    
+    align-items: center;
+    padding: 20px 5%;
+    height: 12vh;
+    background-color: #00262D;
+}
+
+.logoWrap{
+    display: flex;
+    align-items:center ;
+}
+.logo {
+    font-size: 25px;
+  
+    /* font-weight: bold; */
+}
+.logoimg{
+    width: 50px;
+    height: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 150px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    text-decoration: underline;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #BFEF4B;
+}
+
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.hero-content{
+    /* height:auto; */
+    height: 75vh;
+    width: 50%;
+}
+.hero-content > h2{
+    font: 50px Tahoma;
+    color: #BFEF4B;
+    width: 100%;
+}
+.hero-content > p{
+    width: 70%;
+    font-size: 19px;
+    margin-top: 25px;
+    line-height: 35px;
+}
+button {
+    background: #7460E6;
+    border-radius: 6px;
+    height: 45px;
+    width: 220px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    margin-top: 50px;
+}
+button:hover {
+    background: transparent;
+    color: black;
+}
+
+
+
+
+
+
+
+.Ncontainer {
+    display: flex;
+    min-height: auto;
+    padding: 2rem;
+  }
+
+  
+  .left {
+    flex: 1;
+    padding: 2rem;
+  }
+
+
+  .right {
+    flex: 1;
+    padding: 2rem;
+    text-align: center;
+    justify-content: center;
+   
+  }
+
+  .description{
+    width: 70%;
+  }
+
+  .right >p{
+    font-size: 35px;
+  }
+
+  .left > p{
+    font-size: 30px;
+  }
+
+
+  .left > h1{
+    font: 50px Tahoma;
+  }
+
+  
+  .subheading {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+  }
+  
+  .headline {
+    font-size: 3rem;
+    color: #aaff00;
+    font-weight: bold;
+    line-height: 1.2;
+  }
+  
+  .right {
+    background-image: url(globe.avif);
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .illustration {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  .description {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .what{
+    font-size: 30px;
+   
+  }
+
+
+
+
+
+
+
+
+
+
+/* 2. Layout Styles */
+.container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+}
+.server-image{
+    background-image: url(Bitcoin.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50%;
+    height: 85vh;
+}
+.Bitcoin{
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* Hero Section */
+.numbers {
+    margin-top: 40px;
+    width: 100%;
+    display: flex;
+    /* gap: 100px; */
+    border: 1px solid white;
+}
+
+.numbers-image {
+    width: 50%;
+    height: auto;
+    display: block;
+    background-image: url('keyboard.png');
+    background-attachment: fixed;
+    
+}
+.numberBox >h2{
+    height: 45vh;
+    width: 100%;
+    font: 50px tahoma;
+    color: #aaff00;
+}
+
+/* Content Section */
+
+.experience-box >h4{
+    background: purple;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    height: 45vh;
+    text-align: center;
+   
+}
+
+.experience-box> h4{
+    margin-top: 30px;
+    font-size: 25px;
+    line-height: 45px;
+}
+
+
+.nuberRight{
+    color: white;
+    padding: 20px;
+    /* border-radius: 10px; */
+    border: 1px solid white;
+    width: 50%;
+    line-height: 45px;
+    align-items: center;
+    background-attachment: fixed;
+}
+/* 3. Component Styles */
+.text-box {
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    line-height: 25px;
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.1);
+    align-items: center;
+    background-attachment: fixed;
+}
+.text-box > h2{
+    margin-top: 10px;
+    font: 50px tahoma;
+    width: 90%;
+    color: #aaff00;
+    line-height: 70px;
+   
+}
+.text-box > h4{
+    margin-top: 65px;
+    font-size: larger;
+
+}
+
+.text-box > p{
+    margin-top: 35px;
+}
+/* Statistics Section */
+.stats {
+    
+    gap: 20px;
+}
+
+.stat-box {
+    width: 400px;
+    height: 200px;
+    background: black;
+    border: 1px solid white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    margin-top: 40px;
+    align-content: center;
+    text-align: center;
+}
+.stat-box > h1{
+    font-size: 50px;
+}
+.stat-box > p{
+    font-size: 15px;
+}
+.screen-sec{
+    width: 100%;
+}
+.screen-image{
+    background-image: url('screen.png');
+    height: 80vh;
+    width: 100%;
+    background-attachment: fixed;
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.Services{
+    display: flex;
+    width: 100%;
+    padding: 30px 0;
+}
+
+/* sticky section */
+
+.serviceCard{
+    width: 100%;
+}
+.sticky{
+    width: 100%;
+
+}
+.service-box{
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    line-height: 45px;
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.1);
+    align-items: center;
+    background-attachment: fixed;
+}
+.service-box> h2{
+    color: #aaff00;
+    font: 50px tahoma;
+}
+.stickyBox{
+    width: 90%;
+    height: auto;
+    color: white;
+    
+    align-content: center;
+}
+.stickyBox > h3{
+    font: 25px tahoma;
+    font-weight: bold;
+    color: #aaff00;
+}
+.stickyBox > p{
+    font-size: 15px;
+    margin-top: 20px;
+}
+.stickyCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    line-height: 45px;
+}
+.invest{
+    width: 20%;
+    height: 20%;
+}
+.getStarted{
+    background-image: url(getStarted.avif);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 75vh;
+    justify-items: center;
+    align-content: center;
+    background-size: cover;
+}
+.getStarted > p{
+    font-size: 50px;
+    text-align: center;
+    width: 75%;
+}
+
+/* attributes section */
+.attributes{
+    background-color: white;
+    height:auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    color: black;
+}
+.arttry{
+    display: flex;
+    gap: 200px;
+    padding: 30px 0;
+    width: 100%;
+    
+}
+.key-arttry{
+    width: 50%;
+    font-size: 40px;
+    /* border: 1px solid black; */
+    padding: 20px;
+}
+.inoElement{
+    width: 50%;
+
+}
+.inoElement > p{
+    font-size: 25px;
+}
+.art{
+    width: 400px;
+    height: 200px;
+    background: transparent;
+    border: 1px solid black;
+    padding: 15px 30px;
+    border-radius: 10px;
+    margin-top: 40px;
+    align-content: center;
+    text-align: center;
+}
+.btn2{
+    border: 1px solid black;
+    color: black;
+}
+btn2:hover {
+    background: black;
+    color: white;
+}
+
+
+.footer{
+    height: auto;
+    width: 100%;
+    background-color: #003D47;
+}
+.footerlogoWrap{
+    padding: 40px;
+   margin-top: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.contact-container {
+    padding: 50px;
+    display: flex;
+    width: 100%;
+    /* max-width: 900px; */
+    margin-top: 40px;
+    color: black;
+    gap: 110px;
+}
+
+.menu{
+    color: white;
+    margin-top: 60px;
+}
+
+.contact-form {
+    flex: 1;
+    padding: 20px;
+    background: #BFEF4B;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.contact-info {
+    justify-items: center;
+    margin-top: 60px;
+    background: #003D47;
+    color: white;
+    flex: 1;
+    padding: 20px;
+    width: 20%;
+    
+}
+.contact-info > p{
+    margin-top: 30px;
+    width: 50%;
+}
+
+.contact-form > h2 {
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+}
+
+input, textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    font-size: 1rem;
+    background: transparent;
+    margin-top: 32px;
+}
+.textarea{
+    border: none;
+}
+hr {
+    margin: 20px 0;
+    border: 0.5px solid gray;
+    width: 40%;
+}
+
+.btn4 {
+    background: #003D47;
+    border: 1px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn4:hover {
+    background: black;
+    color: white;
+}
+
+
+
+/* 4. Utility Classes */
+.hidden {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+
+
+
+
+
+
+/* Responsive Layouts */
+
+/* Mobile Devices (≤ 768px) */
+@media (max-width: 768px) {
+    .navbar {
+      /* flex-direction: column; */
+      height: auto;
+      padding: 10px;
+      justify-content: space-between;
+    }
+  
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      gap: 20px;
+      background-color: #BFEF4B ;
+      /* margin-top:20px; */
+      width: 75%;
+      position: absolute;
+      top: 10vh;
+      left: 92px;
+      padding: 20px 5%;
+      z-index: 1000;
+    }
+
+    .nav-links.nav-list{
+        display: flex;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+  
+    .hero {
+      flex-direction: column;
+      text-align: left;
+    }
+  
+    .hero-content {
+      width: 100%;
+      height: auto;
+    }
+  
+    .hero-content > p {
+      width: 90%;
+    }
+
+    .hero-content > h2{
+        font-size: 30px;
+    }
+    .Bitcoin{
+        margin-top: 15px;
+        width: 100%;
+    }
+  
+    .Ncontainer,
+    .arttry,
+    .Services,
+    .stickyCard {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        align-items: left;
+        padding: 20px;
+      }
+
+    .contact-info{
+        width: 100%;
+        padding: 5px;
+        justify-items: left;
+    }
+
+    .contact-info > p{
+        font-size: 16px;
+        text-align: left;
+        padding: 0px;
+    }
+  
+    .right,
+    .left,
+    .key-arttry,
+    .inoElement,
+    .text-box,
+    .stat-box,
+    .art,
+    .contact-form {
+      width: 90% !important;
+    }
+
+    .server-image{
+        margin-top: 30px;
+        width: 100%;
+        height: 40vh;
+    }
+
+    .Ncontainer{
+        padding: 10px;
+    }
+
+    .right{
+        padding: 5px;
+    }
+
+    .left{
+        padding: 5px;
+    }
+  
+    .stickyCard {
+      gap: 30px;
+    }
+    
+    .numbers{
+        flex-wrap: wrap;
+    }
+  
+    .logoimg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .getStarted{
+        width: 100%;
+    }
+  
+    .getStarted > p {
+      font-size: 25px;
+      padding: 0 10px;
+    }
+  
+    .logo {
+      font-size: 20px;
+    }
+  
+    button {
+      width: 70%;
+    }
+  
+    .description,
+    .numberBox > h2,
+    .left > h1,
+    .service-box > h2,
+    .stickyBox > h3,
+    .text-box > h2,
+    .what {
+      font-size: 20px !important;
+      line-height: 1.4 !important;
+    }
+
+    .left > h1{
+        width: 100%;
+    }
+
+    .right > p,
+    .left > p, .service-box > p,.nuberRight > p, .stickyBox > p, .li{
+        font-size: 16px;
+        line-height: 35px;
+    }
+    .footerlogoWrap{
+        margin-top: 0px;
+    }
+    .sticky{
+        margin-top: 30px;
+    }
+    .service-box{
+        width: 100%;
+    }
+    
+
+    .experience-box > h4{
+        width: 100%;
+        height: auto;
+        font-size: 17px;
+        line-height: 25px
+    }
+    
+    .numbers-image{
+        width: 100%;
+    }
+    
+    .numbers{
+        border: none;
+    }
+    
+    .numberBox > h2{
+        text-align: center;
+        height: auto;
+    }
+    .nuberRight{
+        width: 100%;
+    }
+  }
+  
+  /* Tablets (769px - 1024px) */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .nav-links {
+      gap: 80px;
+    }
+  
+    .hero-content {
+      width: 100%;
+    }
+  
+    .arttry {
+      gap: 50px;
+      flex-direction: column;
+    }
+  
+    .key-arttry,
+    .inoElement {
+      width: 90%;
+    }
+  
+    .stickyCard {
+      flex-direction: column;
+      gap: 40px;
+    }
+  
+    .server-image {
+      width: 80%;
+    }
+  
+    .nuberRight {
+      width: 90%;
+    }
+  
+    .text-box,
+    .stat-box {
+      width: 90%;
+    }
+  
+    .contact-container {
+      flex-direction: column;
+      gap: 40px;
+    }
+  
+    .contact-info,
+    .contact-form {
+      width: 100%;
+    }
+
+    
+    .experience-box > h4{
+        width: 100%;
+        height: auto;
+        font-size: 15px;
+        line-height: 25px
+    }
+    
+    .numbers-image{
+        width: 100%;
+    }
+    
+    .numbers{
+        border: none;
+    }
+    
+    .numberBox > h2{
+        text-align: center;
+        height: auto;
+    }
+    .nuberRight{
+        width: 100%;
+    }
+
+    .right > p,
+    .left > p, .service-box > p,.nuberRight > p, .stickyBox > p, .li{
+        font-size: 16px;
+        line-height: 35px;
+    }
+    .sticky{
+        margin-top: 30px;
+    }
+    .service-box{
+        width: 100%;
+    }
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

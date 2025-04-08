@@ -1,0 +1,421 @@
+/* 1. Global Styles */
+* {
+    /* margin: 0; */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #00262D;
+    color: white;
+    /* font-family: 'Arial', sans-serif; */
+    /* font-family: 30px Tahoma; */
+    font: 18px Tahoma;
+    /* text-align: center; */
+}
+ /* naveBar Starts Here */
+ .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    height: 12vh;
+    background-color: #00262D;
+}
+
+.logoWrap{
+    display: flex;
+    align-items:center ;
+}
+.logo {
+    font-size: 25px;
+  
+    /* font-weight: bold; */
+}
+.logoimg{
+    width: 50px;
+    height: 50px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 150px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+    text-decoration: underline;
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #BFEF4B;
+}
+
+
+
+.banner{
+    display: flex;
+    margin-top: 60px;
+    border: 1px solid #BFEF4B;
+    width: 100%;
+    height: 60vh;
+    align-items: center;
+}
+.bannerBox1{
+    width: 50%;
+}
+.bannerBox1 > p{
+    font: 60px tahoma;
+    color: #BFEF4B;
+    padding: 30px;
+}
+.bannerBox2{
+    width: 50%;
+    justify-items: center;}
+.bannerBox2 > p{
+    width: 50%;
+}
+
+
+
+/* info section */
+.stepsInfo{
+    display: flex;
+    padding: 30px;
+    margin-top: 70px;
+    background-color: #003D47;
+   
+}
+.stepsWrap{
+    width: 50%;
+    line-height: 30px;
+    border: 1px  solid white;
+    padding: 30px;
+}
+.steps{
+    color:#BFEF4B;
+    font-size: 40px;
+}
+.stepTitle{
+    color: #BFEF4B;
+    /* margin-top: 15px; */
+}
+.stepText{
+    margin-top: 25px;
+    width: 100%;
+}
+
+/* padlock section */
+.padlock{
+    display: flex;
+    width: 100%;
+    padding: 30px;
+}
+.padlock-img{
+    width: 30%;
+    align-content: center;
+    justify-content: center;
+}
+.ImpeccableWrap{
+    width: 70%;
+}
+.ImpeccableBox{
+    text-align: center;
+    border: 1px solid white;
+}
+.ImpeccableBox > p{
+    color:#BFEF4B;
+    font: 45px tahoma;
+}
+.getStarted-solution{
+    border: 1px solid white;
+    padding: 5px ;
+    background-color: #BFEF4B;
+}
+.getText{
+    font: 50px tahoma;
+    color: black;
+}
+.getText2{
+    color: black;
+}
+button{
+    width: 150px;
+    height:50px;
+    background-color: #00262D;
+    color: #BFEF4B;
+    border-radius: 5px;
+    border: none;
+}
+
+/* footer section */
+.footer{
+    height: auto;
+    width: 100%;
+    background-color: #003D47;
+}
+.footerlogoWrap{
+    padding: 40px;
+   margin-top: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+}
+.contact-container {
+    padding: 50px;
+    display: flex;
+    width: 100%;
+    /* max-width: 900px; */
+    margin-top: 40px;
+    color: black;
+    gap: 110px;
+}
+
+.menu{
+    color: white;
+    margin-top: 60px;
+}
+
+.contact-form {
+    flex: 1;
+    padding: 20px;
+    background: #BFEF4B;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.contact-info {
+    justify-items: center;
+    margin-top: 60px;
+    color: white;
+    flex: 1;
+    padding: 20px;
+    width: 20%;
+    
+}
+.contact-info > p{
+    margin-top: 30px;
+    width: 50%;
+}
+
+.contact-form > h2 {
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+}
+
+input, textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid black;
+    padding: 5px;
+    font-size: 1rem;
+    background: transparent;
+    margin-top: 32px;
+}
+.textarea{
+    /* border: none; */
+}
+hr {
+    margin: 20px 0;
+    border: 0.5px solid gray;
+    width: 40%;
+}
+
+.btn4 {
+    background: #003D47;
+    border: 1px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn4:hover {
+    background: #BFEF4B;
+    color: white;
+}
+
+
+
+
+
+
+
+
+/* Responsive Media Queries */
+
+/* Tablets (768px and below) */
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        padding: 15px 5%;
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 30px;
+       
+        background-color: #BFEF4B;
+        /* margin-top: 20px; */
+        width: 75%;
+        position: absolute;
+        top: 10vh;
+        left: 92px;
+        padding: 20px 5%;
+        z-index: 1000;
+    }
+
+    .nav-links.nav-list{
+        display: flex;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .banner {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+    }
+
+    .bannerBox1, .bannerBox2 {
+        width: 100%;
+    }
+
+    .bannerBox1 > p {
+        font-size: 40px;
+        padding: 20px;
+    }
+
+    .stepsInfo {
+        flex-direction: column;
+    }
+
+    .stepsWrap {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .padlock {
+        flex-direction: column;
+    }
+
+    .padlock-img, .ImpeccableWrap {
+        width: 100%;
+    }
+
+    .ImpeccableBox > p {
+        font-size: 30px;
+    }
+
+    .getText {
+        font-size: 36px;
+    }
+
+    .contact-container {
+        flex-direction: column;
+        gap: 40px;
+    }
+
+    .contact-info, .contact-form {
+        width: 100%;
+    }
+
+    .contact-info > p {
+        width: 100%;
+    }
+}
+
+/* Mobile Devices (480px and below) */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .logoimg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+
+    .bannerBox1 > p {
+        font-size: 30px;
+        text-align: left;
+    }
+
+    .bannerBox2 > p{
+        text-align: left;
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+    }
+
+    .steps {
+        font-size: 28px;
+    }
+
+    .ImpeccableBox > p {
+        font-size: 20px;
+    }
+
+    .getText {
+        font-size: 24px;
+        text-align: center;
+        font-weight: bold;
+        color: #003D47;
+    }
+    .getText2{
+        font-size: 18px;
+        padding: 10px;
+    }
+    .getStarted-solution{
+        width: 100%;
+    }
+
+    .btn4, .getStarted-solution button {
+        width: 100%;
+        padding: 10px;
+    }
+
+    input, textarea {
+        font-size: 0.9rem;
+    }
+
+
+
+    
+}
