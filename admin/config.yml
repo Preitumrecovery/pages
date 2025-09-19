@@ -1,6 +1,8 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: Preitumrecovery/pages   # your GitHub repo
   branch: main
+  base_url: https://api.netlify.com  # use Netlify's OAuth proxy
 
 site_url: "https://peritumrecovery.com"
 
