@@ -1,0 +1,25 @@
+backend:
+  name: git-gateway
+  branch: main
+
+site_url: "https://peritumrecovery.com"
+
+media_folder: "blog/postImages"
+public_folder: "/blog/postImages"
+
+collections:
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "blog/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - { label: "Author", name: "author", widget: "string", default: "Peritum Recovery Team" }
+      - { label: "Featured Image", name: "featuredImage", widget: "image" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Short summary for blog listing & SEO" }
+      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Tags", name: "tags", widget: "list", default: ["crypto", "recovery"] }

@@ -1,0 +1,164 @@
+/* ======================================
+   Peritum Recovery • Admin (Netlify CMS)
+   Brand: bg #00262D, accent #BFEF4B, purple #7460E6
+   ====================================== */
+
+/* ---- Base / brand ---- */
+:root{
+  --bg: #00262D;
+  --fg: #ffffff;
+  --muted: #d9dde0;
+  --accent: #BFEF4B;
+  --primary: #7460E6;
+  --primary-900: #5f4bd4;
+  --card: #07323a;
+  --field: #0d3f48;
+  --field-border: #1a5661;
+  --shadow: rgba(0,0,0,.35);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font: 16px/1.5 "Segoe UI", Tahoma, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* ---- Top navbar (simple, lightweight) ---- */
+.admin-navbar{
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding: 14px 5%;
+  border-bottom: 1px solid rgba(191,239,75,.25);
+  background: rgba(0,38,45,.85);
+  backdrop-filter: blur(6px);
+}
+
+.brand{
+  display:flex; align-items:center; gap:10px;
+  color: var(--fg);
+  font-weight: 600;
+}
+.brand-icon{ width:22px; height:22px; border-radius:4px; }
+.brand-name{ letter-spacing:.2px; }
+.brand-divider{ opacity:.4 }
+.brand-section{ color: var(--accent); }
+
+.back-link{
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.back-link:hover{ text-decoration: underline; }
+
+/* ----------------------------------------------------------------
+   Netlify/Decap CMS login theming
+   (classes used by the CMS login page)
+   ---------------------------------------------------------------- */
+
+.nc-auth,               /* wrapper */
+.nc-githubAuthenticationPage,
+.nc-loginPage,
+.nc-authPage {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: calc(100dvh - 64px) !important; /* minus navbar */
+  padding: 32px 16px !important;
+  background: var(--bg) !important;
+}
+
+/* hide the default CMS logo */
+.nc-auth .nc-logo,
+.nc-loginPage .nc-logo {
+  display: none !important;
+}
+
+/* the actual card */
+.nc-auth .Card,
+.nc-loginPage .Card,
+.nc-githubAuthenticationPage .Card {
+  background: var(--card) !important;
+  color: var(--fg) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 20px 50px var(--shadow) !important;
+  width: 100%;
+  max-width: 440px;
+  padding: 28px !important;
+  border: 1px solid rgba(191,239,75,.12) !important;
+}
+
+/* headings & texts */
+.nc-auth h1, .nc-auth h2, .nc-auth h3,
+.nc-loginPage h1, .nc-loginPage h2, .nc-loginPage h3 {
+  color: var(--accent) !important;
+  margin: 0 0 6px 0 !important;
+}
+.nc-auth p, .nc-loginPage p { color: var(--muted) !important; }
+
+/* inputs */
+.nc-auth input[type="email"],
+.nc-auth input[type="password"],
+.nc-loginPage input[type="email"],
+.nc-loginPage input[type="password"]{
+  background: var(--field) !important;
+  border: 1px solid var(--field-border) !important;
+  color: var(--fg) !important;
+  border-radius: 10px !important;
+  padding: 12px 14px !important;
+  width: 100% !important;
+  outline: none !important;
+}
+.nc-auth input::placeholder,
+.nc-loginPage input::placeholder { color: #a8c2c8 !important; }
+
+/* buttons */
+.nc-auth button,
+.nc-loginPage button,
+.nc-githubAuthenticationPage button {
+  background: var(--primary) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  height: 46px !important;
+  padding: 0 18px !important;
+  cursor: pointer !important;
+  transition: transform .12s ease, background .2s ease !important;
+}
+.nc-auth button:hover,
+.nc-loginPage button:hover,
+.nc-githubAuthenticationPage button:hover {
+  background: var(--primary-900) !important;
+  transform: translateY(-1px);
+}
+
+/* links */
+.nc-auth a, .nc-loginPage a {
+  color: var(--accent) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+}
+.nc-auth a:hover, .nc-loginPage a:hover { text-decoration: underline !important; }
+
+/* error toasts / alerts */
+.nc-notification,
+.Toastify__toast {
+  background: #3e1318 !important;
+  color: #ffd7db !important;
+  border: 1px solid #ff6675 !important;
+}
+
+/* Ensure CMS main app (after login) also uses dark bg */
+.nc-app, .nc-root {
+  background: var(--bg) !important;
+  color: var(--fg) !important;
+}
