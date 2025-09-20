@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% set siteUrl = site.url or "https://peritumrecovery.com" %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>{{ title }} | Peritum Recovery Blog</title>
+
+  {# Fallback excerpt if not provided #}
+  {% set metaExcerpt = excerpt or (content | striptags | truncate(160, true, '…')) %}
+
+  <meta name="description" content="{{ metaExcerpt | safe }}" />
+
+  <link rel="canonical" href="{{ siteUrl }}{{ page.url }}" />
+
+  {# OpenGraph #}
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ title }} | Peritum Recovery Blog">
+  <meta property="og:description" content="{{ metaExcerpt | safe }}">
+  <meta property="og:url" content="{{ siteUrl }}{{ page.url }}">
+  {% if featuredImage %}
+    <meta property="og:image" content="{{ featuredImage | url }}">
+  {% endif %}
+
+  {# Twitter Card #}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }} | Peritum Recovery Blog">
+  <meta name="twitter:description" content="{{ metaExcerpt | safe }}">
+  {% if featuredImage %}
+    <meta name="twitter:image" content="{{ featuredImage | url }}">
+  {% endif %}
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header style="padding:24px;">
+    <a href="/">🏠 Home</a> &nbsp; | &nbsp; <a href="/blog/">Blog</a>
+  </header>
+
+  <main style="max-width:900px;margin:0 auto;padding:24px;">
+    <article>
+      <h1>{{ title }}</h1>
+      <p style="color:#666;">
+        <time datetime="{{ date | date('yyyy-LL-dd') }}">{{ date | date('MMMM d, yyyy') }}</time>
+        {% if author %} • {{ author }}{% endif %}
+      </p>
+
+      {% if featuredImage %}
+        <figure style="margin:16px 0;">
+          <img src="{{ featuredImage | url }}" alt="{{ title }}" style="width:100%;height:auto;border-radius:12px;">
+        </figure>
+      {% endif %}
+
+      <div class="content">
+        {{ content | safe }}
+      </div>
+
+      {% if tags and tags.length %}
+        <p style="margin-top:24px;color:#555;">Tags:
+          {% for t in tags %}
+            <span style="padding:2px 8px;border:1px solid #ddd;border-radius:9999px;margin-right:6px;">{{ t }}</span>
+          {% endfor %}
+        </p>
+      {% endif %}
+    </article>
+
+    <!-- Comments -->
+    <section style="margin-top:48px;">
+      <h2>Comments</h2>
+      <div class="commentbox" id="comments"></div>
+    </section>
+  </main>
+
+  <footer style="padding:24px;text-align:center;color:#777;">
+    © {{ "now" | date("yyyy") }} Peritum Recovery
+  </footer>
+
+  <!-- CommentBox.io -->
+  <script src="https://unpkg.com/commentbox.io/dist/commentBox.min.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      // Use the post URL as the stable thread identifier
+      var pageId = "{{ page.url }}";
+      commentBox('YOUR-PROJECT-ID', {
+        className: 'commentbox',
+        defaultBoxId: 'comments',
+        tlcParam: 'peritum',
+        createBoxUrl: function (boxId, pageLocation) {
+          pageLocation.search = "";
+          return pageId;
+        }
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments powered by CommentBox.</noscript>
+</body>
+</html>

@@ -4,22 +4,36 @@ backend:
 
 site_url: "https://peritumrecovery.com"
 
-media_folder: "blog/postImages"
-public_folder: "/blog/postImages"
+media_folder: "blog/postImages"   # files stored in repo
+public_folder: "/blog/postImages" # how they’re referenced on the site
+
+publish_mode: editorial_workflow   # optional: adds Draft → Review → Publish
 
 collections:
   - name: "blog"
     label: "Blog Posts"
-    folder: "blog/posts"
+    folder: "blog/posts"          # each post = one .md file here
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"         # ensure markdown with YAML front-matter
+    extension: "md"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"  # filename like 2025-05-17-my-post.md
+    preview_path: "blog/{{slug}}/" # Netlify preview URL (works with our permalink)
     editor:
       preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
+
+      # Save date as YYYY-MM-DD (what you wanted)
+      - label: "Publish Date"
+        name: "date"
+        widget: "date"
+        format: "YYYY-MM-DD"
+
       - { label: "Author", name: "author", widget: "string", default: "Peritum Recovery Team" }
       - { label: "Featured Image", name: "featuredImage", widget: "image" }
       - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Short summary for blog listing & SEO" }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Tags", name: "tags", widget: "list", default: ["crypto", "recovery"] }
+
+      # Optional: quick toggle to hide a post without deleting it
+      - { label: "Draft", name: "draft", widget: "boolean", default: false }

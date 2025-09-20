@@ -1,0 +1,68 @@
+---
+pagination:
+  data: collections.blog
+  size: 10
+  alias: posts
+permalink: "/blog/index.html"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% set siteUrl = site.url or "https://peritumrecovery.com" %}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Peritum Recovery Blog</title>
+  <meta name="description" content="Peritum Recovery insights, tips, and updates on recovering digital assets.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="canonical" href="{{ siteUrl }}/blog/">
+</head>
+<body>
+  <header style="padding:24px;">
+    <a href="/">🏠 Home</a> &nbsp; | &nbsp; <strong>Blog</strong>
+  </header>
+
+  <main style="max-width:900px;margin:0 auto;padding:24px;">
+    <h1>Peritum Recovery Blog</h1>
+
+    <ul style="list-style:none;padding:0;">
+      {% for post in posts | reverse if post.data.draft != true %}
+        <li style="margin:24px 0;padding-bottom:24px;border-bottom:1px solid #eee;">
+          <a href="{{ post.url }}" style="text-decoration:none;">
+            <h2 style="margin:0 0 6px;">{{ post.data.title }}</h2>
+          </a>
+
+          <p style="color:#666;margin:0 0 10px;">
+            <time datetime="{{ post.date | date('yyyy-LL-dd') }}">{{ post.date | date('MMMM d, yyyy') }}</time>
+            {% if post.data.author %} • {{ post.data.author }}{% endif %}
+          </p>
+
+          {% if post.data.featuredImage %}
+            <img src="{{ post.data.featuredImage | url }}" alt="Cover image for {{ post.data.title }}" style="width:100%;height:auto;border-radius:10px;margin:8px 0;">
+          {% endif %}
+
+          {% set listExcerpt = post.data.excerpt or (post.templateContent | striptags | truncate(180, true, '…')) %}
+          <p style="margin:6px 0 0;color:#444;">{{ listExcerpt }}</p>
+
+          <p style="margin:10px 0 0;"><a href="{{ post.url }}">Read more →</a></p>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Pagination -->
+    <nav aria-label="Pagination" style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
+      {% if pagination.href.previous %}
+        <a href="{{ pagination.href.previous }}">&larr; Newer posts</a>
+      {% endif %}
+      <span>Page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}</span>
+      {% if pagination.href.next %}
+        <a href="{{ pagination.href.next }}">Older posts &rarr;</a>
+      {% endif %}
+    </nav>
+  </main>
+
+  <footer style="padding:24px;text-align:center;color:#777;">
+    © {{ "now" | date("yyyy") }} Peritum Recovery
+  </footer>
+</body>
+</html>
