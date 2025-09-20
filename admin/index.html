@@ -1,25 +1,55 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Peritum Recovery — Admin</title>
-  <link rel="stylesheet" href="adminIndex.css" />
-</head>
-<body>
-  <!-- Minimal shell: CMS will mount into <body>. We only load styles + script -->
-  <div class="admin-navbar">
-    <div class="brand">
-      <img src="/favicon.ico" alt="Peritum" class="brand-icon" />
-      <span class="brand-name">Peritum Recovery</span>
-      <span class="brand-divider">•</span>
-      <span class="brand-section">Admin</span>
-    </div>
-    <a class="back-link" href="/">← Back to site</a>
-  </div>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Peritum Recovery • Admin</title>
+    <link rel="stylesheet" href="adminIndex.css" />
+  </head>
+  <body>
+    <!-- Minimal shell so the CMS can mount -->
+    <div id="app"></div>
 
-  <!-- Netlify/Decap CMS -->
-   <script src="https://unpkg.com/decap-cms@^3/dist/decap-cms.js"></script>
+    <!-- Netlify Identity widget: REQUIRED for invite/reset/password flows -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-</body>
+    <!-- Decap/Netlify CMS app -->
+    <script src="https://unpkg.com/decap-cms@^3/dist/decap-cms.js"></script>
+    <!-- If you prefer Netlify CMS instead of Decap, swap to:
+    <script src="https://unpkg.com/netlify-cms@^2/dist/netlify-cms.js"></script>
+    -->
+
+    <script>
+      // If the user just followed an invite or reset link, the URL will contain
+      // #invite_token=..., #confirmation_token=..., or #recovery_token=...
+      // The Identity widget will handle it automatically IF it is loaded.
+      // We also add a couple of helpers for UX.
+
+      document.addEventListener("DOMContentLoaded", function () {
+        if (!window.netlifyIdentity) return;
+
+        // After a successful login from the widget, go straight into the CMS
+        window.netlifyIdentity.on("login", function () {
+          // Ensure CMS renders (some browsers need a reload)
+          window.location.replace(window.location.pathname);
+        });
+
+        // Optional: if you sign out from the widget, send back to the site
+        window.netlifyIdentity.on("logout", function () {
+          window.location.href = "/";
+        });
+
+        // If the widget hasn't been initialized yet, do it
+        window.netlifyIdentity.on("init", function (user) {
+          // If this page was loaded with an invite/reset token hash, the
+          // widget will pop the password dialog automatically.
+          // Nothing extra needed here.
+          if (!user) {
+            // If no user, you can open the widget on load:
+            // window.netlifyIdentity.open();
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
