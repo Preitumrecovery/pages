@@ -1,9 +1,6 @@
 backend:
-  name: github
-  repo: Preitumrecovery/pages   # your GitHub repo
+  name: git-gateway
   branch: main
-  base_url: https://api.netlify.com
-  site_id: b9ef023e-bf8b-47fe-b915-5bb3423fa6e6  # Netlify Site ID (from Project settings)
 
 site_url: "https://peritumrecovery.com"
 
