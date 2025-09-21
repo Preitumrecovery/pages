@@ -33,7 +33,7 @@ permalink: "/blog/index.html"
           </a>
 
           <p style="color:#666;margin:0 0 10px;">
-            <time datetime="{{ post.date | date('yyyy-LL-dd') }}">{{ post.date | date('MMMM d, yyyy') }}</time>
+           <time datetime="{{ post.date | iso }}">{{ post.date | date('MMMM d, yyyy') }}</time>
             {% if post.data.author %} • {{ post.data.author }}{% endif %}
           </p>
 

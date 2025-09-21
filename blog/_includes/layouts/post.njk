@@ -42,7 +42,7 @@
     <article>
       <h1>{{ title }}</h1>
       <p style="color:#666;">
-        <time datetime="{{ date | date('yyyy-LL-dd') }}">{{ date | date('MMMM d, yyyy') }}</time>
+        <time datetime="{{ date | iso }}">{{ date | date('MMMM d, yyyy') }}</time>
         {% if author %} • {{ author }}{% endif %}
       </p>
 

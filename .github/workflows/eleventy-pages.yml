@@ -25,16 +25,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: npm
+          cache-dependency-path: package-lock.json
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
       - name: Install deps
-        run: npm install
-
-      # Make sure Eleventy is available even if install was partial
-      - name: Ensure Eleventy
-        run: npm i -D @11ty/eleventy@^3
+        run: npm ci   # use lockfile for reproducible installs
 
       - name: Show versions (debug)
         run: |
@@ -43,7 +41,7 @@ jobs:
           npx eleventy --version
 
       - name: Build Eleventy
-        run: npx eleventy --output=_site --quiet=false
+        run: npx eleventy --output=_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
