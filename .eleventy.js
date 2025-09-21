@@ -1,24 +1,32 @@
+// .eleventy.js
 const { DateTime } = require("luxon");
 
 module.exports = function (eleventyConfig) {
-  // Make the CMS app and its config available at /admin/
+  // CMS + images
   eleventyConfig.addPassthroughCopy("admin");
-
-  // Keep your blog images working
   eleventyConfig.addPassthroughCopy({ "blog/postImages": "blog/postImages" });
 
-  // (Optional) root stylesheet
+  // Root assets you reference with /... in HTML
   eleventyConfig.addPassthroughCopy("styles.css");
+  eleventyConfig.addPassthroughCopy("solution.css");
+  eleventyConfig.addPassthroughCopy("company.css");
+  eleventyConfig.addPassthroughCopy("logo.avif");
+  eleventyConfig.addPassthroughCopy("padlock.avif");
+  eleventyConfig.addPassthroughCopy("blockShield.avif");
 
-  // (Optional) passthrough common static assets anywhere in the project
-  eleventyConfig.addPassthroughCopy({ "**/*.{png,avif,svg,webp,ico}": true });
+  // If you use GitHub Pages + custom domain
+  eleventyConfig.addPassthroughCopy("CNAME");
+  eleventyConfig.addPassthroughCopy(".nojekyll");
 
-  // Blog collection from Netlify CMS folder
-  eleventyConfig.addCollection("blog", (api) => {
-    return api.getFilteredByGlob("blog/posts/**/*.md").sort((a, b) => b.date - a.date);
-  });
+  // (Optional) do it in one line instead of the individual ones above:
+  // eleventyConfig.addPassthroughCopy({ "./*.{css,avif,png,jpg,svg,webp}": "/" });
 
-  // ---- Nunjucks date filters ----
+  // Blog collection
+  eleventyConfig.addCollection("blog", (api) =>
+    api.getFilteredByGlob("blog/posts/**/*.md").sort((a, b) => b.date - a.date)
+  );
+
+  // Nunjucks date filters
   eleventyConfig.addFilter("date", (value, fmt = "yyyy-LL-dd") => {
     if (!value) return "";
     const d = value instanceof Date ? value : new Date(value);
@@ -30,9 +38,8 @@ module.exports = function (eleventyConfig) {
     if (!value) return "";
     const d = value instanceof Date ? value : new Date(value);
     if (isNaN(d)) return "";
-    return DateTime.fromJSDate(d, { zone: "utc" }).toISODate(); // e.g., 2025-05-17
+    return DateTime.fromJSDate(d, { zone: "utc" }).toISODate();
   });
-  // --------------------------------
 
   return {
     dir: {
