@@ -4,26 +4,25 @@ backend:
 
 site_url: "https://peritumrecovery.com"
 
-media_folder: "blog/postImages"   # files stored in repo
-public_folder: "/blog/postImages" # how they’re referenced on the site
+media_folder: "blog/postImages"     # MUST match your actual folder name/casing
+public_folder: "/blog/postImages"
 
-publish_mode: editorial_workflow   # optional: adds Draft → Review → Publish
+publish_mode: editorial_workflow
 
 collections:
   - name: "blog"
     label: "Blog Posts"
-    folder: "blog/posts"          # each post = one .md file here
+    folder: "blog/posts"
     create: true
-    format: "frontmatter"         # ensure markdown with YAML front-matter
+    format: "frontmatter"
     extension: "md"
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"  # filename like 2025-05-17-my-post.md
-    preview_path: "blog/{{slug}}/" # Netlify preview URL (works with our permalink)
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    preview_path: "blog/{{slug}}/"
     editor:
       preview: true
     fields:
       - { label: "Title", name: "title", widget: "string" }
 
-      # Save date as YYYY-MM-DD (what you wanted)
       - label: "Publish Date"
         name: "date"
         widget: "date"
@@ -34,6 +33,7 @@ collections:
       - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Short summary for blog listing & SEO" }
       - { label: "Body", name: "body", widget: "markdown" }
       - { label: "Tags", name: "tags", widget: "list", default: ["crypto", "recovery"] }
-
-      # Optional: quick toggle to hide a post without deleting it
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
+
+      # Make sure every new post has your Eleventy layout
+      - { label: "Layout", name: "layout", widget: "hidden", default: "blog/_includes/layouts/post.njk" }
