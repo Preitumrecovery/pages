@@ -6,9 +6,10 @@
   <title>{{ title }} — Peritum Recovery</title>
 
   <!-- SEO / share -->
-  <meta name="description" content="{{ excerpt | safe | truncate(180, true, '…') }}">
+  {% set metaExcerpt = excerpt or (content | striptags | truncate(180, true, '…')) %}
+  <meta name="description" content="{{ metaExcerpt | safe }}">
   <meta property="og:title" content="{{ title }}">
-  <meta property="og:description" content="{{ excerpt | safe | truncate(180, true, '…') }}">
+  <meta property="og:description" content="{{ metaExcerpt | safe }}">
   <meta property="og:type" content="article">
   {% if featuredImage %}
     <meta property="og:image" content="{{ featuredImage }}">
@@ -67,11 +68,72 @@
     </div>
   </article>
 
+  {# ───────────────── Comments (rendered & crawlable) ──────────────── #}
+  {% set allComments = collections.comments | commentsFor(page.fileSlug) %}
+  <section id="comments" class="comments">
+    <h2 class="comments-title">
+      Comments {% if allComments and allComments.length %}({{ allComments.length }}){% endif %}
+    </h2>
+
+    {% if allComments and allComments.length %}
+      <ol class="comment-list">
+        {% for c in allComments %}
+          <li class="comment-item">
+            <div class="comment-meta">
+              <span class="comment-author">{{ c.data.name | default("Anonymous") }}</span>
+              {% if c.data.date %}
+                <time class="comment-date" datetime="{{ c.data.date | iso }}">{{ c.data.date | date('yyyy-LL-dd') }}</time>
+              {% endif %}
+            </div>
+            <div class="comment-body">
+              {{ c.templateContent | safe }}
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
+    {% else %}
+      <p class="no-comments">No comments yet. Be the first to share your thoughts!</p>
+    {% endif %}
+
+    <div id="comment-thanks" class="comment-thanks" hidden>
+      ✅ Thanks! Your comment was submitted and may appear after review.
+    </div>
+
+    <form class="comment-form" method="POST" action="/.netlify/functions/add-comment">
+      <input type="hidden" name="slug" value="{{ page.fileSlug }}">
+      <!-- redirect back to this post with an anchor so we can show a thanks notice -->
+      <input type="hidden" name="redirect" value="{{ page.url }}#comment-submitted">
+      <!-- simple honeypot -->
+      <input type="text" name="hp" autocomplete="off" tabindex="-1" style="position:absolute;left:-9999px" aria-hidden="true">
+
+      <div class="form-row">
+        <label for="c-name">Name *</label>
+        <input id="c-name" name="name" type="text" required>
+      </div>
+
+      <div class="form-row">
+        <label for="c-email">Email (not shown)</label>
+        <input id="c-email" name="email" type="email" inputmode="email">
+      </div>
+
+      <div class="form-row">
+        <label for="c-message">Comment *</label>
+        <textarea id="c-message" name="message" rows="5" required></textarea>
+      </div>
+
+      <button class="btn" type="submit">Post comment</button>
+      <p class="comment-hint">By commenting you agree to our community guidelines. HTML is stripped.</p>
+    </form>
+
+    <noscript>
+      <p>JavaScript is required to submit comments. Please enable it and reload.</p>
+    </noscript>
+  </section>
+
+  {# ──────────────── Prev/Next nav ──────────────── #}
   {% set posts = collections.blog %}
   {% set index = -1 %}
-  {% for p in posts %}
-    {% if p.url == page.url %}{% set index = loop.index0 %}{% endif %}
-  {% endfor %}
+  {% for p in posts %}{% if p.url == page.url %}{% set index = loop.index0 %}{% endif %}{% endfor %}
   {% set prev = posts[index + 1] %}
   {% set next = posts[index - 1] %}
 
@@ -104,9 +166,19 @@
 </footer>
 
 <script>
+  // mobile nav
   document.querySelector('.nav-toggle')?.addEventListener('click',()=>{
     document.querySelector('.main-nav').classList.toggle('open');
   });
+
+  // show the “thanks” message when redirected after submit
+  if (location.hash === '#comment-submitted') {
+    const el = document.getElementById('comment-thanks');
+    if (el) el.hidden = false;
+    // jump to comments
+    const anchor = document.getElementById('comments');
+    if (anchor) anchor.scrollIntoView({behavior:'smooth'});
+  }
 </script>
 </body>
 </html>
