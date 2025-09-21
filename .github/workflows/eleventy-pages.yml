@@ -25,12 +25,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: npm
+          cache-dependency-path: package-lock.json
 
-      - name: Install deps
-        run: npm ci
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      # installs even if there's no package-lock.json
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
 
       - name: Build Eleventy
-        run: npm run build   # -> outputs to _site
+        run: npm run build   # outputs to _site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
