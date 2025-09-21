@@ -1,17 +1,21 @@
 const { DateTime } = require("luxon");
 
 module.exports = function (eleventyConfig) {
-  // Keep your images working
+  // Make the CMS app and its config available at /admin/
+  eleventyConfig.addPassthroughCopy("admin");
+
+  // Keep your blog images working
   eleventyConfig.addPassthroughCopy({ "blog/postImages": "blog/postImages" });
 
-  // (Optional) pass through your root stylesheet if you serve /styles.css
+  // (Optional) root stylesheet
   eleventyConfig.addPassthroughCopy("styles.css");
+
+  // (Optional) passthrough common static assets anywhere in the project
+  eleventyConfig.addPassthroughCopy({ "**/*.{png,avif,svg,webp,ico}": true });
 
   // Blog collection from Netlify CMS folder
   eleventyConfig.addCollection("blog", (api) => {
-    return api
-      .getFilteredByGlob("blog/posts/**/*.md")
-      .sort((a, b) => b.date - a.date);
+    return api.getFilteredByGlob("blog/posts/**/*.md").sort((a, b) => b.date - a.date);
   });
 
   // ---- Nunjucks date filters ----
