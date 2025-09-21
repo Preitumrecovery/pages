@@ -29,10 +29,10 @@ jobs:
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
-      - name: Install dependencies
+      - name: Install deps
         run: npm install
 
-      # Safety: make sure Eleventy is present even if lockfile was missing
+      # Make sure Eleventy is available even if install was partial
       - name: Ensure Eleventy
         run: npm i -D @11ty/eleventy@^3
 
@@ -41,11 +41,9 @@ jobs:
           node -v
           npm -v
           npx eleventy --version
-          ls -la
-          ls -la blog || true
 
       - name: Build Eleventy
-        run: npx eleventy --output=_site
+        run: npx eleventy --output=_site --quiet=false
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
