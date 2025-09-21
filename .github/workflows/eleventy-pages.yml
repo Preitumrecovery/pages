@@ -32,8 +32,20 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      # Safety: make sure Eleventy is present even if lockfile was missing
+      - name: Ensure Eleventy
+        run: npm i -D @11ty/eleventy@^3
+
+      - name: Show versions (debug)
+        run: |
+          node -v
+          npm -v
+          npx eleventy --version
+          ls -la
+          ls -la blog || true
+
       - name: Build Eleventy
-        run: npm run build    # outputs to _site
+        run: npx eleventy --output=_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
