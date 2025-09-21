@@ -10,6 +10,9 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("styles.css");
   eleventyConfig.addPassthroughCopy("solution.css");
   eleventyConfig.addPassthroughCopy("company.css");
+  // .eleventy.js  (add this line with your other passthroughs)
+eleventyConfig.addPassthroughCopy("blog.css");
+
 
   // ✅ Catch-all for all root images (Bitcoin.avif, invest.avif, globe.avif, etc.)
   eleventyConfig.addPassthroughCopy({ "./*.{avif,png,jpg,jpeg,svg,webp,ico}": "/" });

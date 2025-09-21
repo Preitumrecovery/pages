@@ -1,68 +1,217 @@
 ---
-pagination:
-  data: collections.blog
-  size: 10
-  alias: posts
-permalink: "/blog/index.html"
+permalink: /blog/
+title: Peritum Recovery Blog
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  {% set siteUrl = site.url or "https://peritumrecovery.com" %}
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Peritum Recovery Blog</title>
-  <meta name="description" content="Peritum Recovery insights, tips, and updates on recovering digital assets.">
-  <link rel="stylesheet" href="/styles.css">
-  <link rel="canonical" href="{{ siteUrl }}/blog/">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Peritum Recovery — Blog</title>
+
+  <!-- Blog styles -->
+  <link rel="stylesheet" href="/blog.css">
+
+  <!-- Icons (same you already use) -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-  <header style="padding:24px;">
-    <a href="/">🏠 Home</a> &nbsp; | &nbsp; <strong>Blog</strong>
+
+  <!-- Minimal header matching your site nav -->
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img src="/logo.avif" alt="Peritum Recovery" />
+        <span>Peritum <strong>Recovery</strong></span>
+      </a>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/solutions.html">Solution</a>
+        <a href="/company.html">Company</a>
+        <a class="active" href="/blog/">Blog</a>
+      </nav>
+      <button class="nav-toggle" aria-label="Toggle menu"><i class="fa fa-bars"></i></button>
+    </div>
   </header>
 
-  <main style="max-width:900px;margin:0 auto;padding:24px;">
-    <h1>Peritum Recovery Blog</h1>
+  <main class="blog-wrap">
+    <!-- Hero / controls -->
+    <section class="blog-hero">
+      <div class="hero-text">
+        <h1>Peritum Recovery Blog</h1>
+        <p>Guides, updates, and insights to help you protect and recover your digital assets.</p>
+      </div>
 
-    <ul style="list-style:none;padding:0;">
-      {% for post in posts | reverse if post.data.draft != true %}
-        <li style="margin:24px 0;padding-bottom:24px;border-bottom:1px solid #eee;">
-          <a href="{{ post.url }}" style="text-decoration:none;">
-            <h2 style="margin:0 0 6px;">{{ post.data.title }}</h2>
-          </a>
+      <form class="blog-controls" onsubmit="return false;">
+        <label class="search">
+          <i class="fa fa-search"></i>
+          <input id="searchInput" type="search" placeholder="Search topics…" autocomplete="off" />
+          <button id="clearSearch" type="button" title="Clear"><i class="fa fa-times"></i></button>
+        </label>
 
-          <p style="color:#666;margin:0 0 10px;">
-           <time datetime="{{ post.date | iso }}">{{ post.date | date('MMMM d, yyyy') }}</time>
-            {% if post.data.author %} • {{ post.data.author }}{% endif %}
-          </p>
+        <div class="tag-filter">
+          <div class="tag-filter__title"><i class="fa fa-filter"></i> Filter by tag</div>
+          <div id="tagChips" class="tag-chips">
+            <!-- Chips are built client-side from the posts below -->
+          </div>
+        </div>
+      </form>
+    </section>
 
-          {% if post.data.featuredImage %}
-            <img src="{{ post.data.featuredImage | url }}" alt="Cover image for {{ post.data.title }}" style="width:100%;height:auto;border-radius:10px;margin:8px 0;">
-          {% endif %}
+    <!-- 2-column layout: posts + sidebar (stacks on mobile) -->
+    <section class="blog-grid">
+      <!-- Posts list -->
+      <div id="postList" class="post-list">
+        {# Render every post as a card. We expose title/tags to JS via data-* #}
+        {% for post in collections.blog %}
+          {% set tags = (post.data.tags or []) %}
+          <article class="post-card"
+                   data-title="{{ (post.data.title or '') | lower }}"
+                   data-tags="{{ tags | join(',') | lower }}">
+            <a class="thumb" href="{{ post.url }}">
+              <img
+                src="{{ post.data.featuredImage or '/blog/postImages/peritblog.png' }}"
+                alt="{{ post.data.title }}"
+                loading="lazy"
+                onerror="this.src='/blog/postImages/peritblog.png';">
+            </a>
 
-          {% set listExcerpt = post.data.excerpt or (post.templateContent | striptags | truncate(180, true, '…')) %}
-          <p style="margin:6px 0 0;color:#444;">{{ listExcerpt }}</p>
+            <div class="card-body">
+              <div class="meta">
+                <time datetime="{{ post.date | iso }}">{{ post.date | date('yyyy-LL-dd') }}</time>
+                {% for t in tags %}
+                  <span class="chip" data-chip>{{ t }}</span>
+                {% endfor %}
+              </div>
 
-          <p style="margin:10px 0 0;"><a href="{{ post.url }}">Read more →</a></p>
-        </li>
-      {% endfor %}
-    </ul>
+              <h3 class="title"><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
 
-    <!-- Pagination -->
-    <nav aria-label="Pagination" style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
-      {% if pagination.href.previous %}
-        <a href="{{ pagination.href.previous }}">&larr; Newer posts</a>
-      {% endif %}
-      <span>Page {{ pagination.pageNumber + 1 }} of {{ pagination.pages.length }}</span>
-      {% if pagination.href.next %}
-        <a href="{{ pagination.href.next }}">Older posts &rarr;</a>
-      {% endif %}
-    </nav>
+              {% if post.data.excerpt %}
+                <p class="excerpt">{{ post.data.excerpt }}</p>
+              {% endif %}
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="blog-aside">
+        <div class="aside-card">
+          <h4 class="aside-title">Recent topics</h4>
+          <ul class="recent">
+            {% for post in collections.blog | slice(0,5) %}
+              <li>
+                <a href="{{ post.url }}">{{ post.data.title }}</a>
+                <time datetime="{{ post.date | iso }}">{{ post.date | date('yyyy-LL-dd') }}</time>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="aside-card">
+          <h4 class="aside-title">Stay updated</h4>
+          <p>New posts cover security tips, recovery workflows, and trend alerts.</p>
+          <a class="btn" href="/#contactForm">Contact us</a>
+        </div>
+      </aside>
+    </section>
   </main>
 
-  <footer style="padding:24px;text-align:center;color:#777;">
-    © {{ "now" | date("yyyy") }} Peritum Recovery
+  <footer class="site-footer">
+    <div class="wrap">
+      <p>© Peritum Recovery</p>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/solutions.html">Solution</a>
+        <a href="/company.html">Company</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
   </footer>
+
+  <script>
+    // Simple client-side search + tag filtering
+    (function () {
+      const q = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearSearch');
+      const list = document.getElementById('postList');
+      const cards = Array.from(list.querySelectorAll('.post-card'));
+      const chipsWrap = document.getElementById('tagChips');
+
+      // Build a tag cloud from the DOM
+      const counts = new Map();
+      cards.forEach(c => {
+        const tags = (c.dataset.tags || '').split(',').map(s => s.trim()).filter(Boolean);
+        tags.forEach(t => counts.set(t, (counts.get(t) || 0) + 1));
+      });
+
+      // Render chips
+      const frag = document.createDocumentFragment();
+      counts.forEach((count, tag) => {
+        const b = document.createElement('button');
+        b.className = 'chip chip--filter';
+        b.type = 'button';
+        b.dataset.tag = tag;
+        b.innerHTML = `${tag} <span class="count">${count}</span>`;
+        frag.appendChild(b);
+      });
+      if (counts.size) chipsWrap.appendChild(frag);
+
+      let activeTag = '';
+      let term = '';
+
+      function apply() {
+        const t = term.toLowerCase();
+        cards.forEach(card => {
+          const inTitle = card.dataset.title.includes(t);
+          const inTags  = card.dataset.tags.includes(t);
+          const hitsSearch = !t || inTitle || inTags;
+
+          const hitsTag = !activeTag || card.dataset.tags.split(',').includes(activeTag);
+
+          card.style.display = (hitsSearch && hitsTag) ? '' : 'none';
+        });
+      }
+
+      q.addEventListener('input', () => {
+        term = q.value.trim();
+        apply();
+        clearBtn.style.visibility = term ? 'visible' : 'hidden';
+      });
+
+      clearBtn.addEventListener('click', () => {
+        term = '';
+        q.value = '';
+        apply();
+        clearBtn.style.visibility = 'hidden';
+        q.focus();
+      });
+
+      chipsWrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('button.chip--filter');
+        if (!btn) return;
+
+        // toggle active
+        if (btn.classList.contains('active')) {
+          btn.classList.remove('active');
+          activeTag = '';
+        } else {
+          chipsWrap.querySelectorAll('.chip--filter.active').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeTag = btn.dataset.tag;
+        }
+        apply();
+      });
+
+      // Burger for tiny screens
+      document.querySelector('.nav-toggle').addEventListener('click', () => {
+        document.querySelector('.main-nav').classList.toggle('open');
+      });
+    })();
+  </script>
 </body>
 </html>
