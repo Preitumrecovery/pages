@@ -45,12 +45,20 @@ module.exports = function (eleventyConfig) {
   });
 
   // Filter to grab comments for a given post slug (NON-STRICT moderation)
-  // Shows comments unless explicitly marked approved: false
+  // Normalizes slugs by stripping a leading YYYY-MM-DD- so comments match
+  // whether the post's fileSlug includes a date or not.
   eleventyConfig.addFilter("commentsFor", (allComments, slug) => {
-    const key = (slug || "").toLowerCase();
+    const normalize = (s) =>
+      String(s || "")
+        .toLowerCase()
+        .trim()
+        .replace(/^\d{4}-\d{2}-\d{2}-/, ""); // remove leading date-
+
+    const key = normalize(slug);
+
     return (allComments || [])
-      .filter((c) => ((c.data?.post || "").toLowerCase() === key))
-      .filter((c) => c.data?.approved !== false) // ← non-strict: include if true or missing, exclude only if false
+      .filter((c) => normalize(c.data?.post) === key)
+      .filter((c) => c.data?.approved !== false) // show unless explicitly false
       .sort((a, b) => new Date(a.data?.date) - new Date(b.data?.date));
   });
 
@@ -59,7 +67,7 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: ".",
       includes: "blog/_includes",
-      layouts: "blog/_includes/layouts",   // allows `layout: post.njk`
+      layouts: "blog/_includes/layouts", // allows `layout: post.njk`
       data: "blog/_data",
       output: "_site",
     },
