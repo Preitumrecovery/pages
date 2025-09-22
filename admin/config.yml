@@ -17,6 +17,7 @@ collections:
     format: "frontmatter"
     extension: "md"
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    # Preview the same path we publish to
     preview_path: "blog/{{slug}}/"
     editor:
       preview: true
@@ -25,15 +26,35 @@ collections:
 
       - label: "Publish Date"
         name: "date"
-        widget: "date"
+        widget: "datetime"   # allows time if you want; 11ty handles date fine
         format: "YYYY-MM-DD"
 
       - { label: "Author", name: "author", widget: "string", default: "Peritum Recovery Team" }
       - { label: "Featured Image", name: "featuredImage", widget: "image" }
       - { label: "Excerpt", name: "excerpt", widget: "text", hint: "Short summary for blog listing & SEO" }
       - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["crypto", "recovery"] }
+      - { label: "Tags", name: "tags", widget: "list", default: ["security", "scams", "recovery"] }
       - { label: "Draft", name: "draft", widget: "boolean", default: false }
 
-      # Make sure every new post has your Eleventy layout
-      - { label: "Layout", name: "layout", widget: "hidden", default: "blog/_includes/layouts/post.njk" }
+      # Ensure Eleventy uses the correct layout (matches .eleventy.js -> layouts: blog/_includes/layouts)
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post.njk" }
+
+      # Make the output URL /blog/{{slug}}/ (aligns build with preview_path)
+      - { label: "Permalink", name: "permalink", widget: "hidden", default: "blog/{{slug}}/index.html" }
+
+
+  - name: "comments"
+    label: "Comments"
+    folder: "blog/comments"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    format: "frontmatter"
+    extension: "md"
+    sortable_fields: ["date", "post"]
+    fields:
+      - { label: "Post Slug", name: "post", widget: "string", required: true, hint: "Must match the post’s fileSlug (used by commentsFor)." }
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Email (not public)", name: "email", widget: "string", required: false }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ss[Z]", default: "{{now}}" }
+      - { label: "Approved", name: "approved", widget: "boolean", default: true }
+      - { label: "Message", name: "body", widget: "markdown", hint: "The comment text." }

@@ -44,11 +44,13 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(d, { zone: "utc" }).toISODate();
   });
 
-  // Filter to grab comments for a given post slug
+  // Filter to grab comments for a given post slug (NON-STRICT moderation)
+  // Shows comments unless explicitly marked approved: false
   eleventyConfig.addFilter("commentsFor", (allComments, slug) => {
     const key = (slug || "").toLowerCase();
     return (allComments || [])
-      .filter((c) => ((c.data?.post || "").toLowerCase() === key)) // ← use "post", not "slug"
+      .filter((c) => ((c.data?.post || "").toLowerCase() === key))
+      .filter((c) => c.data?.approved !== false) // ← non-strict: include if true or missing, exclude only if false
       .sort((a, b) => new Date(a.data?.date) - new Date(b.data?.date));
   });
 
@@ -57,6 +59,7 @@ module.exports = function (eleventyConfig) {
     dir: {
       input: ".",
       includes: "blog/_includes",
+      layouts: "blog/_includes/layouts",   // allows `layout: post.njk`
       data: "blog/_data",
       output: "_site",
     },

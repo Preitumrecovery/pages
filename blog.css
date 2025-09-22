@@ -116,3 +116,151 @@ a:hover{color:var(--accent-2);text-decoration:underline}
 .nav-card:hover{transform:translateY(-2px);transition:.15s}
 @media (min-width:760px){ .post-nav{grid-template-columns:1fr 1fr} }
 
+/* ───────────────── Comment Section (dark + lime) ───────────────── */
+.comments{
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+.comments-title{
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+/* List */
+.comment-list{
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px 0;
+  display: grid;
+  gap: 12px;
+}
+.comment-item{
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: var(--shadow);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.comment-item:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+/* Meta + body */
+.comment-meta{
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.comment-author{
+  font-weight: 700;
+  color: var(--text);
+  font-size: 13px;
+}
+.comment-date{
+  color: var(--muted);
+  font-size: 12px;
+}
+.comment-body{
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Empty state + thanks banner */
+.no-comments{
+  color: var(--muted);
+  font-style: italic;
+  margin: 8px 0 18px;
+}
+.comment-thanks{
+  background: rgba(183,255,95,.08);               /* lime tint */
+  border: 1px solid rgba(183,255,95,.28);
+  color: var(--accent);
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+/* Form */
+.comment-form{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+.comment-form .form-row{ margin-bottom: 12px; }
+.comment-form label{
+  display:block;
+  font-weight:600;
+  color: var(--text);
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+.comment-form input,
+.comment-form textarea{
+  width:100%;
+  background: var(--card-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.comment-form input::placeholder,
+.comment-form textarea::placeholder{ color: var(--muted); }
+.comment-form input:focus,
+.comment-form textarea:focus{
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(183,255,95,.12);
+}
+.comment-form textarea{ resize: vertical; }
+
+/* Button (inherits your .btn; add states here) */
+.comment-form .btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #051b1b; /* readable on lime */
+  border: 0;
+  font-weight: 700;
+}
+.comment-form .btn:hover:not([disabled]){ filter: brightness(1.05); }
+.comment-form .btn[disabled]{ opacity: .65; cursor: not-allowed; }
+
+/* Loading state (matches the JS that toggles .is-loading) */
+.comment-form .btn.is-loading{ position: relative; }
+.comment-form .btn.is-loading::after{
+  content: "";
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: 2px solid rgba(5,27,27,.35);   /* dark ring */
+  border-top-color: #051b1b;             /* solid segment */
+  margin-left: .35rem;
+  animation: spin .9s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Small screens */
+@media (max-width: 720px){
+  .comment-item{ padding: 12px; }
+  .comment-form{ padding: 14px; }
+}

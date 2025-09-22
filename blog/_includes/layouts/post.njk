@@ -20,6 +20,17 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Minimal inline style for disabled/loading state -->
+  <style>
+    .btn[disabled] { opacity: .65; cursor: not-allowed; pointer-events: none; }
+    .btn.is-loading::after {
+      content: "…"; /* subtle ellipsis when loading */
+      animation: dots 1s steps(3, end) infinite;
+      margin-left: .25rem;
+    }
+    @keyframes dots { 0% { content:""; } 33% { content:"."; } 66% { content:".."; } 100% { content:"..."; } }
+  </style>
 </head>
 <body>
 
@@ -99,7 +110,7 @@
       ✅ Thanks! Your comment was submitted and may appear after review.
     </div>
 
-    <form class="comment-form" method="POST" action="/.netlify/functions/add-comment">
+    <form id="comment-form" class="comment-form" method="POST" action="/.netlify/functions/add-comment" novalidate>
       <input type="hidden" name="slug" value="{{ page.fileSlug }}">
       <!-- redirect back to this post with an anchor so we can show a thanks notice -->
       <input type="hidden" name="redirect" value="{{ page.url }}#comment-submitted">
@@ -121,7 +132,7 @@
         <textarea id="c-message" name="message" rows="5" required></textarea>
       </div>
 
-      <button class="btn" type="submit">Post comment</button>
+      <button id="c-submit" class="btn" type="submit" data-default="Post comment" data-loading="Posting…">Post comment</button>
       <p class="comment-hint">By commenting you agree to our community guidelines. HTML is stripped.</p>
     </form>
 
@@ -179,6 +190,49 @@
     const anchor = document.getElementById('comments');
     if (anchor) anchor.scrollIntoView({behavior:'smooth'});
   }
+
+  // Prevent double submits: disable button + show loading text
+  (function () {
+    const form = document.getElementById('comment-form');
+    const btn  = document.getElementById('c-submit');
+    const name = document.getElementById('c-name');
+    const msg  = document.getElementById('c-message');
+
+    // Re-enable button if user navigates back from redirect cache
+    window.addEventListener('pageshow', function () {
+      if (btn) {
+        btn.disabled = false;
+        btn.classList.remove('is-loading');
+        btn.textContent = btn.getAttribute('data-default') || 'Post comment';
+      }
+    });
+
+    form?.addEventListener('submit', function (e) {
+      if (!btn) return;
+
+      // Simple client-side validation in case browser validation is bypassed
+      const nameOk = name && name.value.trim().length > 0;
+      const msgOk  = msg && msg.value.trim().length > 0;
+
+      if (!nameOk || !msgOk) {
+        e.preventDefault();
+        // focus the first missing field
+        (!nameOk ? name : msg)?.focus();
+        return;
+      }
+
+      // Guard: if already disabled, block duplicate
+      if (btn.disabled) {
+        e.preventDefault();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.classList.add('is-loading');
+      btn.textContent = btn.getAttribute('data-loading') || 'Posting…';
+      // Let the form submit normally (server redirects back to #comment-submitted)
+    });
+  })();
 </script>
 </body>
 </html>
