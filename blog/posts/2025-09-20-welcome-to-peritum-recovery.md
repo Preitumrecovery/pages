@@ -10,6 +10,7 @@ excerpt: Welcome to Peritum Recovery! We specialize in helping individuals and
 tags:
   - crypto
   - recovery
+  layout: post.njk
 ---
 <strong>Welcome to Peritum Recovery 🚀</strong>
 

@@ -8,8 +8,8 @@ excerpt: Discover how to spot a scam online or offline. This guide covers the
 tags:
   - crypto
   - recovery
-draft: true
-layout: blog/_includes/layouts/post.njk
+draft: false
+layout: post.njk
 ---
    In today’s digital world, scams are everywhere from fake emails and text messages to fraudulent investment offers and phishing websites. Scammers are constantly finding new ways to trick people into handing over their money or personal information. Knowing how to recognise the warning signs is the first step to staying safe.
 
